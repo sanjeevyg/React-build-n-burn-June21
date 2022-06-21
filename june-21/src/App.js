@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
 
-function App() {
+import React, { useEffect, useState } from 'react'
+import CharacterContainer from './Components/charactersContainer'
+
+export default function App() {
+
+  const [characters, setCharacters] = useState([]);
+
+  useEffect(() => {
+    fetch('https://rickandmortyapi.com/api/character') 
+      .then(response =>  response.json())
+      .then(({results}) => setCharacters(results))
+  }, [])
+
+
+  const deleteCharacter = (characterD) => {
+    const newCharacters = characters.filter(character => character.id !== characterD.id)
+    setCharacters(newCharacters)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CharacterContainer 
+        key="characters" 
+        characters={characters} 
+        deleteCharacter={deleteCharacter}
+      />
     </div>
-  );
+  )
 }
 
-export default App;
+
