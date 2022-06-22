@@ -15,8 +15,8 @@ export default function characterContainer(props) {
     }
 
     return (
-        <>
+        <div className='card-container'>
            {handleCharacters()}
-        </>
+        </div>
     )
 }
