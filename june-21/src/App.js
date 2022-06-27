@@ -6,6 +6,7 @@ import Filter from './Components/filter';
 import Navbar from './Components/Navbar';
 import Timer from './Components/Timer';
 import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom'
 
 export default function App() {
 
@@ -46,6 +47,7 @@ export default function App() {
         <Timer timer={timer}/>
         <Navbar />
       </main>
+      <Outlet />
       <Filter
         name={name}
         handleValue={handleValue}
