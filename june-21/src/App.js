@@ -3,8 +3,13 @@ import './App.css';
 import React, { useEffect, useState } from 'react'
 import CharacterContainer from './Components/charactersContainer'
 import Filter from './Components/filter';
+import Navbar from './Components/Navbar';
+import Timer from './Components/Timer';
+import { useSelector } from 'react-redux';
 
 export default function App() {
+
+  const {timer} = useSelector(store => store.cart)
 
   const [characters, setCharacters] = useState([]);
   const [name, setName] = useState('')
@@ -37,12 +42,14 @@ export default function App() {
 
   return (
     <div className="App">
-
+      <main>
+        <Timer timer={timer}/>
+        <Navbar />
+      </main>
       <Filter
         name={name}
         handleValue={handleValue}
       />
-      
       <CharacterContainer 
         key="characters" 
         characters={filteredCharacters()} 
@@ -51,5 +58,13 @@ export default function App() {
     </div>
   )
 }
+
+
+//Redux
+//Forms
+//Conditional Rendering
+//Routes
+//backend - node and express
+//Extra
 
 
